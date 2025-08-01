@@ -1,0 +1,49 @@
+version: 2
+
+sources:
+  - name: raw
+    tables:
+      - name: logistics_details
+  
+  - name: fact
+    tables:
+      - name: fct_shipment
+        columns:
+          - name: shipment_id
+            tests: [not_null, unique]
+          - name: sender_id
+            tests: [not_null, unique]
+          - name: shipment_date_id
+            tests: [not_null]
+          - name: expiry_date_id
+            tests: [not_null]
+          - name: receive_date_id
+            tests: [not_null]
+  
+  - name: dimensions
+    tables:
+      - name: dim_billing
+        columns: 
+          - name: shipment_id
+            tests: [not_null, unique]
+      
+      - name: dim_date
+        columns: 
+          - name: date_id
+            tests: [not_null, unique]
+      
+      - name: dim_receiver
+        columns: 
+          - name: receiver_id
+            tests: [not_null, unique]
+      
+      - name: dim_sender
+        columns: 
+          - name: sender_id
+            tests: [not_null, unique]
+      
+      - name: dim_shipment_type
+        columns: 
+          - name: shipment_id
+            tests: [not_null, unique]
+      
